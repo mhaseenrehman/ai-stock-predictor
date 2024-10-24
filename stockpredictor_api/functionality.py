@@ -94,13 +94,19 @@ def linear_regression_process_data(dataset, window=30, output=5):
     data = [torch.tensor(data_item[0], dtype=torch.float32) for data_item in stock_data]
     result = [torch.tensor(data_item[1], dtype=torch.float32) for data_item in stock_data]
     
-    stock_train_data = torch.stack(data).cuda()
-    stock_train_result = torch.stack(result).cuda()
+    stock_train_data = torch.stack(data)
+    stock_train_result = torch.stack(result)
+
+    if torch.cuda.is_available():
+        stock_train_data.cuda()
+        stock_train_result.cuda()
     
     # Windowed Test - Test again on a small subset of dates for stock prices
     t1, t2, t3, t4 = np.array(test[-window:]).T.tolist()
     test_data = torch.tensor(t1+t2+t3+t4, dtype=torch.float32)
-    stock_test_data = torch.stack((test_data,)).cuda()
+    stock_test_data = torch.stack((test_data,))
+    if torch.cuda.is_available():
+        stock_test_data.cuda()
     #stock_test_result = t4
 
     # Return result
