@@ -4,7 +4,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
 
 export default function Stocks() {
-    const url = "https://aistockpredictor.onrender.com/";
+    const url = "https://aistockpredictor.onrender.com/api/";
 
     const [rawStockData, setRawStockData] = React.useState([]);
     const [stockPrediction, setStockPrediction] = React.useState([]);
