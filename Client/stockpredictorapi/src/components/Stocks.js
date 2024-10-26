@@ -14,7 +14,7 @@ export default function Stocks() {
 
     const getData = async () => {
         console.log("Starting Retrieve Stock Data & Prediction Request")
-        await axios.get(url).then(res => {
+        await axios.get(url, {withCredentials: false}).then(res => {
             // Obtain Response from Django JSON & add dates
             const data = res.data;
             
